@@ -50,7 +50,10 @@ var flattenToTree = function (arr) {
       }
     }
   }
+  let tempCountPre = 0;
+  let tempCountAfter = 0;
   while (noMatch.length > 0) {
+    tempCountPre = noMatch.length;
     for (let i=0; i< noMatch.length; i++) {
       let target = findIt(tree, noMatch[i]);
       if (target) {
@@ -61,6 +64,10 @@ var flattenToTree = function (arr) {
         noMatch.splice(i, 1);
       }
     }
+    tempCountAfter = noMatch.length;
+        if (tempCountPre === tempCountAfter) {
+            break;
+        }
   }
   return tree;
 }
